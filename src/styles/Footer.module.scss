@@ -1,0 +1,10 @@
+.navigation_menu {
+    background-color: #236162;
+    @apply flex p-4 text-white gap-2 flex-wrap;
+
+    &__link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
