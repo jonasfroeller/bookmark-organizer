@@ -14,7 +14,7 @@ export const Notification = () => {
 
     return (
         <>
-            {displayNotification && <Toast title={sessionData?.user?.name} description={secretMessage} />}
+            {displayNotification && <Toast title={sessionData?.user?.name ?? ""} description={secretMessage ?? ""} />}
         </>
     );
 };

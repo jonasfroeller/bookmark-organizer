@@ -63,7 +63,7 @@ function AccountSettings(page: PageProps) {
         <div className="flex items-center gap-2">
             <Toolbar.Link href="/dashboard">
                 <Label.Root htmlFor="dashboard">
-                    <AccessibleIcon.Root id="dashboard" name="dashboard" label="dashboard">
+                    <AccessibleIcon.Root label="dashboard">
                         <DashboardIcon className={`cursor-pointer ${page?.route?.isDashboardPage ? "text-tertiary-600" : ""}`} height={`${iconSize}px`} width={`${iconSize}px`} />
                     </AccessibleIcon.Root>
                 </Label.Root>
@@ -71,7 +71,7 @@ function AccountSettings(page: PageProps) {
 
             <Toolbar.Link href="/account">
                 <Label.Root htmlFor="account">
-                    <AccessibleIcon.Root id="account" name="account" label="account">
+                    <AccessibleIcon.Root label="account">
                         <AvatarIcon className={`cursor-pointer ${page?.route?.isAccountPage ? "text-tertiary-600" : ""}`} height={`${iconSize}px`} width={`${iconSize}px`} />
                     </AccessibleIcon.Root>
                 </Label.Root>
@@ -79,7 +79,7 @@ function AccountSettings(page: PageProps) {
 
             <Toolbar.Link href="/settings">
                 <Label.Root htmlFor="settings">
-                    <AccessibleIcon.Root id="settings" name="settings" label="settings">
+                    <AccessibleIcon.Root label="settings">
                         <GearIcon className={`cursor-pointer ${page?.route?.isSettingsPage ? "text-tertiary-600" : ""}`} height={`${iconSize}px`} width={`${iconSize}px`} />
                     </AccessibleIcon.Root>
                 </Label.Root>
@@ -91,140 +91,140 @@ function AccountSettings(page: PageProps) {
 function Actions() {
     return (
         <div className="flex gap-10">
-        <div className={`${styles.toolbar__search_bar} flex items-center gap-1`}>
-            <input type="search" id="search" className={`${styles.toolbar__search_bar__input} bg-white/10 hover:bg-white/20`} placeHolderValue="search..." defaultValue="" />
-            <Label.Root htmlFor="search">
-                <AccessibleIcon.Root label="search">
-                    <MagnifyingGlassIcon className={`${styles.toolbar__search_bar__icon}`} height={`${iconSize}px`} width={`${iconSize}px`} />
-                </AccessibleIcon.Root>
-            </Label.Root>
+            <div className={`${styles.toolbar__search_bar} flex items-center gap-1`}>
+                <input type="search" className={`${styles.toolbar__search_bar__input} bg-white/10 hover:bg-white/20`} defaultValue="" />
+                <Label.Root htmlFor="search">
+                    <AccessibleIcon.Root label="search">
+                        <MagnifyingGlassIcon className={`${styles.toolbar__search_bar__icon}`} height={`${iconSize}px`} width={`${iconSize}px`} />
+                    </AccessibleIcon.Root>
+                </Label.Root>
+            </div>
+
+            <Toolbar.ToggleGroup className={`${styles.toolbar__actions}`} type="multiple" aria-label="Search Settings">
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                only not starred
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="star" aria-label="Star">
+                                <StarIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                only starred
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="star-filled" aria-label="Star Filled">
+                                <StarFilledIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                by group name
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="layers" aria-label="Layers">
+                                <LayersIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                by url
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="link" aria-label="Link">
+                                <Link2Icon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                by badge (tag)
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="badge" aria-label="Badge">
+                                <BadgeIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                by description
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="text-align-left" aria-label="Text Align Left">
+                                <TextAlignLeftIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+
+                <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
+
+                <Tooltip.Provider>
+                    <Tooltip.Root>
+                        <Tooltip.Portal>
+                            <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
+                                by title
+                                <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
+                            </Tooltip.Content>
+                        </Tooltip.Portal>
+                        <Tooltip.Trigger asChild>
+                            <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="text" aria-label="Text">
+                                <TextIcon height={`${iconSize}px`} width={`${iconSize}px`} />
+                            </Toolbar.ToggleItem>
+                        </Tooltip.Trigger>
+                    </Tooltip.Root>
+                </Tooltip.Provider>
+            </Toolbar.ToggleGroup>
         </div>
-    
-        <Toolbar.ToggleGroup className={`${styles.toolbar__actions}`} type="multiple" aria-label="Search Settings">
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            only not starred
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="star" aria-label="Star">
-                            <StarIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-    
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            only starred
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="star-filled" aria-label="Star Filled">
-                            <StarFilledIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-    
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            by group name
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="layers" aria-label="Layers">
-                            <LayersIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-    
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            by url
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="link" aria-label="Link">
-                            <Link2Icon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-            
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            by badge (tag)
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="badge" aria-label="Badge">
-                            <BadgeIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-    
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            by description
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="text-align-left" aria-label="Text Align Left">
-                            <TextAlignLeftIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-    
-            <Toolbar.Separator className={`${styles.toolbar__actions__divider}`} />
-    
-            <Tooltip.Provider>
-                <Tooltip.Root>
-                    <Tooltip.Portal>
-                        <Tooltip.Content className={`${styles.toolbar__actions__tool_tip}`} sideOffset={5}>
-                            by title
-                            <Tooltip.Arrow className={`${styles.toolbar__actions__tool_tip__icon}`} />
-                        </Tooltip.Content>
-                    </Tooltip.Portal>
-                    <Tooltip.Trigger asChild>
-                        <Toolbar.ToggleItem className={`${styles.toolbar__actions__action}`} value="text" aria-label="Text">
-                            <TextIcon height={`${iconSize}px`} width={`${iconSize}px`} />
-                        </Toolbar.ToggleItem>
-                    </Tooltip.Trigger>
-                </Tooltip.Root>
-            </Tooltip.Provider>
-        </Toolbar.ToggleGroup>
-    </div>
     );
 }

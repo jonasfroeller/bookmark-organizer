@@ -5,10 +5,10 @@ import { useSession } from "next-auth/react";
 import { Cross1Icon } from '@radix-ui/react-icons';
 import styles from '../styles/Toast.module.scss';
 
-export const Toast = ({ title, description }) => {
+export const Toast = ({ title, description }: { title: string, description: string }) => {
     const { data: sessionData } = useSession();
 
-    const [open, setOpen] = React.useState(sessionData?.user);
+    const [open, setOpen] = React.useState(sessionData?.user !== undefined);
 
     return (
         <RadixToast.Provider swipeDirection="right">
@@ -17,7 +17,7 @@ export const Toast = ({ title, description }) => {
                 <RadixToast.Description className={`${styles.toast_pos__toast_element__description}`}>
                     {description}
                 </RadixToast.Description>
-                <RadixToast.Close> 
+                <RadixToast.Close>
                     <AccessibleIcon.Root label="close">
                         <Cross1Icon className="cursor-pointer" height="15px" width="15px" />
                     </AccessibleIcon.Root>
