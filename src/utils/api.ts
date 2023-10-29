@@ -1,6 +1,6 @@
 /**
  * client-side entrypoint for the tRPC API
- * 
+ *
  * It is used to create the `api` object which contains the Next.js App-wrapper, as well as your type-safe React Query hooks.
  */
 import { httpBatchLink, loggerLink } from "@trpc/client";

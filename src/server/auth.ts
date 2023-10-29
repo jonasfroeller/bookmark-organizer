@@ -25,10 +25,10 @@ declare module "next-auth" {
     };
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  /* interface User {
+    // ...other properties
+    // role: UserRole;
+  } */
 }
 
 /**
@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
     }),
     GitHubProvider({
       clientId: env.GITHUB_ID,
-      clientSecret: env.GITHUB_SECRET
+      clientSecret: env.GITHUB_SECRET,
     }),
     /**
      * @see https://next-auth.js.org/providers
