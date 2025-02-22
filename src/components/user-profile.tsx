@@ -1,7 +1,8 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Avatar, Button, Flex, Text } from "@radix-ui/themes";
+
 type UserProps = {
   id: string;
   email: string;
@@ -26,41 +27,32 @@ export default function UserProfile({ user }: { user: UserProps }) {
       },
     });
   };
-  return (
-    <div className="flex items-start gap-5">
-      <div className="flex cursor-pointer items-center">
-        <div>
-          {
-            user.image ? (
-              <Image
-                alt={user.name ?? "user image"}
-                src={user.image}
-                width={36}
-                height={36}
-                className="inline-block h-9 w-9 rounded-full"
-              />
-            ) : (
-              <div className="bg-gray-100 h-10 w-10 rounded-full flex items-center justify-center text-black">
-                {
-                  user.name?.charAt(0)
-                }
-              </div>
-            )
-          }
 
-        </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-gray-100 group-hover:text-gray-200">
-            {user.name}
-          </p>
-          <p className="text-xs font-medium text-gray-500 group-hover:text-gray-600">
-            {user.email}
-          </p>
-        </div>
-      </div>
-      <button onClick={signOut} className="text-sm text-gray-100">
+  return (
+    <Flex align="center" gap="4">
+      <Flex align="center" gap="3">
+        {user.image ? (
+          <Avatar
+            size="3"
+            src={user.image}
+            fallback={user.name?.[0] ?? "U"}
+            radius="full"
+          />
+        ) : (
+          <Avatar
+            size="3"
+            fallback={user.name?.[0] ?? "U"}
+            radius="full"
+          />
+        )}
+        <Flex direction="column" gap="1">
+          <Text weight="medium">{user.name}</Text>
+          <Text size="2" color="gray">{user.email}</Text>
+        </Flex>
+      </Flex>
+      <Button onClick={signOut} size="2">
         Sign out
-      </button>
-    </div>
+      </Button>
+    </Flex>
   );
 }

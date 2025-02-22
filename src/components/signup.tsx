@@ -5,6 +5,7 @@ import { type SVGProps, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { signinGithub } from "@/lib/social-login";
+import { Button, TextField, Text, Box } from "@radix-ui/themes";
 
 export default function SignUp() {
   const router = useRouter();
@@ -12,6 +13,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
+
   const signUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -38,91 +40,71 @@ export default function SignUp() {
   };
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-gradient-to-b from-primary-600 to-primary-700">
       <div className="z-10 mx-auto w-full max-w-[500px] text-white">
         <div className="mb-8 text-center">
-          <h1 className="font-geist text-3xl font-normal tracking-tighter">
-            Welcome back
-          </h1>
-          <p className="font-geist font-normal text-gray-800/90 dark:text-gray-400">
-            Sign in to your account to continue
-          </p>
+          <Text size="6" weight="bold" className="tracking-tighter">
+            Create an account
+          </Text><br></br>
+          <Text size="2" className="text-white/60">
+            Get started with your free account
+          </Text>
         </div>
         <form className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm/6 font-medium">
+          <Box className="space-y-2">
+            <Text as="label" size="2" weight="medium">
               Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="name"
-              required
-              onChange={(e) => setName(e.target.value)}
-              className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
-            />
-          </div>
+            </Text>
+            <TextField.Root
+                type="text"
+                required
+                onChange={(e) => setName(e.target.value)}>
+            </TextField.Root>
+          </Box>
 
-          <div>
-            <label htmlFor="email" className="block text-sm/6 font-medium">
+          <Box className="space-y-2">
+            <Text as="label" size="2" weight="medium">
               Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              onChange={(e) => setEmail(e.target.value)}
-              className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            </Text>
+            <TextField.Root
+                type="email"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
             />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm/6 font-medium">
+          </Box>
+
+          <Box className="space-y-2">
+            <Text as="label" size="2" weight="medium">
               Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            </Text>
+            <TextField.Root
+                type="password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
             />
-          </div>
-          <button
-            onClick={signUp}
-            className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded bg-neutral-950 bg-purple-200/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-purple-800 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-transparent dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset]"
-          >
-            {loading ? (
-              <span className="relative">Signing Up...</span>
-            ) : (
-              <span className="relative">Sign Up</span>
-            )}
-          </button>
+          </Box>
+
+          <Button onClick={signUp} className="w-full" disabled={loading}>
+            {loading ? "Signing Up..." : "Sign Up"}
+          </Button>
         </form>
-        <div className="mt-6 text-center text-sm">
-          <p className="text-gray-500 dark:text-gray-400">
-            Already have an account?
-            <Link
-              className="ml-2 font-medium text-gray-900 underline-offset-4 hover:underline dark:text-gray-500"
-              href="/login"
-            >
+
+        <div className="mt-6 text-center">
+          <Text size="2" className="text-white/60">
+            Already have an account?{" "}
+            <Link href="/login" className="text-accent-400 hover:text-accent-300">
               Sign In
             </Link>
-          </p>
+          </Text>
         </div>
-        <div className="mt-6 border-t border-t-gray-600 pt-6">
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={signinGithub}
-              className="font-geist relative mx-auto flex h-12 w-full transform-gpu items-center justify-center gap-2 overflow-hidden rounded bg-neutral-950 bg-purple-200/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-purple-800 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-purple-600 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset]"
-            >
-              <GithubIcon className="mr-2 h-4 w-4" />
-              Sign in with GitHub
-            </button>
-          </div>
+
+        <div className="mt-6 border-t border-white/10 pt-6">
+          <Button onClick={signinGithub} className="w-full">
+            <GithubIcon className="mr-2 h-4 w-4" />
+            Sign in with GitHub
+          </Button>
         </div>
       </div>
     </div>

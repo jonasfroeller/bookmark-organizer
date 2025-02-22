@@ -6,6 +6,8 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Header } from "@/components/Header";
+import { Main } from "@/components/Main";
 
 export const metadata: Metadata = {
   title: "Bookmark Organizer",
@@ -22,8 +24,13 @@ export default function RootLayout({
       className={`${GeistSans.variable} bg-gradient-to-b from-[#2e026d] to-[#15162c]`}
     >
       <body>
-        <Theme>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Theme accentColor="orange">
+          <TRPCReactProvider>
+            <Header />
+            <Main>
+              {children}
+            </Main>
+          </TRPCReactProvider>
           {/* <ThemePanel /> */}
         </Theme>
       </body>

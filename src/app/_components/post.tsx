@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { api } from "@/trpc/react";
+import { Button, TextField } from "@radix-ui/themes";
 
 export function LatestPost() {
   const { data: latestPost } = api.post.getLatest.useQuery();
@@ -30,20 +31,18 @@ export function LatestPost() {
         }}
         className="flex flex-col gap-2"
       >
-        <input
+        <TextField.Root
           type="text"
           placeholder="Title"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-full px-4 py-2 text-black"
         />
-        <button
+        <Button
           type="submit"
-          className="rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
           disabled={createPost.isPending}
         >
           {createPost.isPending ? "Submitting..." : "Submit"}
-        </button>
+        </Button>
       </form>
     </div>
   );
