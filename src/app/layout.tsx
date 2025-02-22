@@ -1,9 +1,11 @@
+import "@radix-ui/themes/styles.css";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { Theme, ThemePanel } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
   title: "Bookmark Organizer",
@@ -20,7 +22,10 @@ export default function RootLayout({
       className={`${GeistSans.variable} bg-gradient-to-b from-[#2e026d] to-[#15162c]`}
     >
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Theme>
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+          {/* <ThemePanel /> */}
+        </Theme>
       </body>
     </html>
   );
