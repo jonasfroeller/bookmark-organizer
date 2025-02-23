@@ -4,6 +4,7 @@ import { api, HydrateClient } from "@/trpc/server";
 import UserProfile from "@/components/user-profile";
 import { getSession } from "@/server/auth";
 import { Button } from "@radix-ui/themes";
+import BookmarkManager from '@/components/BookmarkManager';
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -32,6 +33,9 @@ export default async function Home() {
               <p className="text-white">Create, update, and delete bookmarks effortlessly.</p>
             </div>
           </div>
+
+          <h2 className="text-2xl font-bold text-white">MVP Demo</h2>
+          <BookmarkManager />
 
           <Link href="/login">
             <Button className="rounded-full px-10 py-3 font-semibold transition cursor-pointer bg-olive-8 hover:bg-olive-7">
