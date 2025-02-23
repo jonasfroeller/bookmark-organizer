@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} bg-gradient-to-b from-[#2e026d] to-[#15162c]`}
+      className={`${GeistSans.variable} bg-linear-to-b from-[#2e026d] to-[#15162c]`}
     >
       <body>
         <Theme accentColor="orange">

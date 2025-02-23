@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-b from-primary-600 to-primary-700">
+      <div className="flex flex-1 flex-col items-center justify-center bg-linear-to-b from-primary-600 to-primary-700">
         {!session?.user ? (
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">

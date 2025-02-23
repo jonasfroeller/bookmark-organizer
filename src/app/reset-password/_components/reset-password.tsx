@@ -49,7 +49,7 @@ export default function ResetPasswordForm() {
             required
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
-            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
           />
         </div>
         <div>
@@ -66,13 +66,13 @@ export default function ResetPasswordForm() {
             required
             onChange={(e) => setCheckPassword(e.target.value)}
             autoComplete="current-password"
-            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
           />
         </div>
         <button
           disabled={password !== checkPassword}
           onClick={resetPassword}
-          className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded bg-neutral-950 bg-purple-200/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-purple-800 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-purple-600 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset]"
+          className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded-sm bg-neutral-950 bg-purple-200/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-purple-800 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-purple-600 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset]"
         >
           {loading ? (
             <span className="relative">Reseting password...</span>

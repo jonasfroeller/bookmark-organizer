@@ -40,7 +40,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-gradient-to-b from-primary-600 to-primary-700">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-primary-600 to-primary-700">
       <div className="z-10 mx-auto w-full max-w-[500px] text-white">
         <div className="mb-8 text-center">
           <Text size="6" weight="bold" className="tracking-tighter">

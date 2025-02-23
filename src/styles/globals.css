@@ -1,3 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-primary-50: #ecfdfa;
+  --color-primary-100: #d0fbf2;
+  --color-primary-200: #a6f4e8;
+  --color-primary-300: #6de8dd;
+  --color-primary-400: #32d5cc;
+  --color-primary-500: #0ebbb7;
+  --color-primary-600: #039898;
+  --color-primary-700: #037679;
+  --color-primary-800: #055e60;
+  --color-primary-900: #054c4f;
+  --color-primary-950: #011c1e;
+
+  --color-secondary-50: #f0f9f3;
+  --color-secondary-100: #daf1e0;
+  --color-secondary-200: #b8e2c7;
+  --color-secondary-300: #89cca5;
+  --color-secondary-400: #6cba8e;
+  --color-secondary-500: #359461;
+  --color-secondary-600: #25764d;
+  --color-secondary-700: #1d5f3f;
+  --color-secondary-800: #1a4b33;
+  --color-secondary-900: #163e2c;
+  --color-secondary-950: #0b2318;
+
+  --color-tertiary-50: #fefce8;
+  --color-tertiary-100: #fffac2;
+  --color-tertiary-200: #fff388;
+  --color-tertiary-300: #ffe443;
+  --color-tertiary-400: #ffd110;
+  --color-tertiary-500: #efb703;
+  --color-tertiary-600: #d18f00;
+  --color-tertiary-700: #a46404;
+  --color-tertiary-800: #874e0c;
+  --color-tertiary-900: #734010;
+  --color-tertiary-950: #432005;
+
+  --color-accent-50: #f7f3ff;
+  --color-accent-100: #f3ecfe;
+  --color-accent-200: #e5d6fe;
+  --color-accent-300: #d2b6fc;
+  --color-accent-400: #bd8cf9;
+  --color-accent-500: #a95df5;
+  --color-accent-600: #9f3bec;
+  --color-accent-700: #9029d8;
+  --color-accent-800: #7822b5;
+  --color-accent-900: #631e94;
+  --color-accent-950: #3e1164;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
