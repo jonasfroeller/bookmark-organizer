@@ -5,7 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme/* , ThemePanel */ } from "@radix-ui/themes";
 import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 

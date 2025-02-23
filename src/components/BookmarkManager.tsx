@@ -14,8 +14,8 @@ const BookmarkManager = () => {
         const names = bookmarkNames.split('\n');
         let output = `<!DOCTYPE netscape-bookmark-file-1>
                         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                        <title>${bookmarkTitle || 'Bookmarks'}</title>
-                        <h1>${bookmarkTitle || 'Bookmarks'}</h1>
+                        <title>${bookmarkTitle ?? 'Bookmarks'}</title>
+                        <h1>${bookmarkTitle ?? 'Bookmarks'}</h1>
                         <dl><p>`;
 
         if (folderName) {
@@ -23,7 +23,7 @@ const BookmarkManager = () => {
         }
 
         urls.forEach((url, index) => {
-            const name = names[index] && names[index].trim() ? names[index] : url;
+            const name = names[index]?.trim() ?? url;
             output += `<dt><a href="${url}">${name}</a>`;
         });
 

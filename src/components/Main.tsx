@@ -1,5 +1,5 @@
 import { Flex } from "@radix-ui/themes";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export const Main = ({ children }: { children: ReactNode }) => {
   return (
