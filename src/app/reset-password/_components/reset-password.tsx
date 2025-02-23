@@ -72,7 +72,7 @@ export default function ResetPasswordForm() {
         <button
           disabled={password !== checkPassword}
           onClick={resetPassword}
-          className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded-sm bg-neutral-950 bg-purple-200/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-purple-800 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-purple-600 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f01f_inset]"
+          className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded-sm bg-neutral-950 bg-olive-8/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-olive-8 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-olive-8 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_green_inset]"
         >
           {loading ? (
             <span className="relative">Reseting password...</span>

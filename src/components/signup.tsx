@@ -40,7 +40,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-primary-600 to-primary-700">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-green-6 to-green-8">
       <div className="z-10 mx-auto w-full max-w-[500px] text-white">
         <div className="mb-8 text-center">
           <Text size="6" weight="bold" className="tracking-tighter">
@@ -94,7 +94,7 @@ export default function SignUp() {
         <div className="mt-6 text-center">
           <Text size="2" className="text-white/60">
             Already have an account?{" "}
-            <Link href="/login" className="text-accent-400 hover:text-accent-300">
+            <Link href="/login" className="text-olive-8 hover:text-olive-7">
               Sign In
             </Link>
           </Text>

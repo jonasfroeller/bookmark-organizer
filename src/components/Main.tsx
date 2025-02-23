@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export const Main = ({ children }: { children: ReactNode }) => {
   return (
-    <Flex direction="column" className="min-h-screen bg-[#236162]">
+    <Flex direction="column" className="min-h-screen bg-green-9">
       {children}
     </Flex>
   );

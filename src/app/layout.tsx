@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} bg-linear-to-b from-[#2e026d] to-[#15162c]`}
+      className={`${GeistSans.variable} bg-linear-to-b from-green-8 to-green-12`}
     >
       <body>
-        <Theme accentColor="orange">
+        <Theme accentColor="green" grayColor="olive">
           <TRPCReactProvider>
             <Header />
             <Main>

@@ -38,7 +38,7 @@ export default function Login() {
   };
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-primary-600 to-primary-700">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-green-6 to-green-8">
       <div className="z-10 mx-auto w-full max-w-[500px] text-white">
         <div className="mb-8 text-center">
           <Text size="6" weight="bold" className="tracking-tighter">
@@ -76,7 +76,7 @@ export default function Login() {
               <Checkbox checked={remember} onCheckedChange={(checked) => setRemember(!!checked)} />
               <Text size="2">Remember me</Text>
             </Flex>
-            <Link href="/forget-password" className="text-sm hover:text-accent-400">
+            <Link href="/forget-password" className="text-sm hover:text-olive-8">
               Forgot password?
             </Link>
           </Flex>
@@ -88,7 +88,7 @@ export default function Login() {
         <div className="mt-6 text-center">
           <Text size="2" className="text-white/60">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-accent-400 hover:text-accent-300">
+            <Link href="/signup" className="text-olive-8 hover:text-olive-7">
               Sign up
             </Link>
           </Text>
