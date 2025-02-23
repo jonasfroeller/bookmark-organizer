@@ -42,7 +42,7 @@ const BookmarkManager = () => {
     };
 
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        <div className="p-4 bg-green-1 text-green-12 dark:bg-green-12 dark:text-green-1 rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Bookmark Manager</h2>
             <textarea
                 className="w-full p-2 border rounded mb-2"

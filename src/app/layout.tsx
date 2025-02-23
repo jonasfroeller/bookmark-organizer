@@ -8,6 +8,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { Theme/* , ThemePanel */ } from "@radix-ui/themes";
 import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Bookmark Organizer",
@@ -21,18 +22,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} bg-linear-to-b from-green-8 to-green-12`}
+      className={`${GeistSans.variable}`}
     >
       <body>
-        <Theme accentColor="green" grayColor="olive">
-          <TRPCReactProvider>
-            <Header />
-            <Main>
-              {children}
-            </Main>
-          </TRPCReactProvider>
-          {/* <ThemePanel /> */}
-        </Theme>
+        <ThemeProvider attribute="class" enableColorScheme enableSystem>
+          <Theme accentColor="green" grayColor="olive">
+            <TRPCReactProvider>
+              <Header />
+              <Main>
+                {children}
+              </Main>
+            </TRPCReactProvider>
+            {/* <ThemePanel /> */}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );

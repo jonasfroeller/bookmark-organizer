@@ -38,13 +38,13 @@ export default function Login() {
   };
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-b from-green-6 to-green-8">
-      <div className="z-10 mx-auto w-full max-w-[500px] text-white">
+    <div className="relative flex min-h-[100dvh] items-center justify-center">
+      <div className="z-10 mx-auto w-full max-w-[500px]">
         <div className="mb-8 text-center">
           <Text size="6" weight="bold" className="tracking-tighter">
             Welcome back
           </Text><br></br>
-          <Text size="2" className="text-white/60">
+          <Text size="2">
             Sign in to your account to continue
           </Text>
         </div>
@@ -86,7 +86,7 @@ export default function Login() {
         </form>
 
         <div className="mt-6 text-center">
-          <Text size="2" className="text-white/60">
+          <Text size="2">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-olive-8 hover:text-olive-7">
               Sign up

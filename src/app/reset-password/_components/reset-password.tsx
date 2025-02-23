@@ -1,5 +1,6 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
+import { Button } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -29,8 +30,8 @@ export default function ResetPasswordForm() {
   };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <div className="mx-auto flex w-full max-w-[500px] flex-col gap-4 text-white">
-        <div className="mb-8 text-white">
+      <div className="mx-auto flex w-full max-w-[500px] flex-col gap-4">
+        <div className="mb-8">
           <h1 className="font-geist text-3xl font-normal tracking-tighter">
             Reset Password
           </h1>
@@ -38,7 +39,7 @@ export default function ResetPasswordForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm/6 font-medium text-white"
+            className="block text-sm/6 font-medium"
           >
             Password
           </label>
@@ -55,7 +56,7 @@ export default function ResetPasswordForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm/6 font-medium text-white"
+            className="block text-sm/6 font-medium"
           >
             Confirm Password
           </label>
@@ -69,17 +70,16 @@ export default function ResetPasswordForm() {
             className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
           />
         </div>
-        <button
+        <Button
           disabled={password !== checkPassword}
           onClick={resetPassword}
-          className="font-geist relative mx-auto h-12 w-full transform-gpu overflow-hidden rounded-sm bg-neutral-950 bg-olive-8/10 px-5 py-2.5 text-center tracking-tighter text-white transition-all duration-300 hover:bg-neutral-800 hover:bg-transparent/5 hover:ring-2 hover:ring-olive-8 hover:ring-offset-2 hover:ring-offset-zinc-900 active:bg-olive-8 dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_green_inset]"
         >
           {loading ? (
             <span className="relative">Reseting password...</span>
           ) : (
             <span className="relative">Reset Password</span>
           )}
-        </button>
+        </Button>
       </div>
     </div>
   );

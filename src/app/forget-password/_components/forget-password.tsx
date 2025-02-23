@@ -26,8 +26,8 @@ export default function ForgetPasswordForm() {
   };
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="mx-auto flex w-full max-w-[500px] flex-col gap-4 text-white">
-        <div className="mb-8 text-white">
+      <div className="mx-auto flex w-full max-w-[500px] flex-col gap-4">
+        <div className="mb-8">
           <h1 className="font-geist text-3xl font-normal tracking-tighter">
             Forget Password
           </h1>
@@ -35,7 +35,7 @@ export default function ForgetPasswordForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm/6 font-medium text-white"
+            className="block text-sm/6 font-medium"
           >
             Email address
           </label>
