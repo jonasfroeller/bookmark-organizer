@@ -1,52 +1,16 @@
-@import 'tailwindcss';
+@import "radix-themes-tw";
 
 @theme {
   --font-sans:
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  /* This disables all Tailwind colors */
-  /* --color-*: initial; */
 }
 
-@import "tailwindcss-radix-colors/dist/green.css"; /* success */
-@import "tailwindcss-radix-colors/dist/cyan.css"; /* info */
-@import "tailwindcss-radix-colors/dist/amber.css"; /* warning */
-@import "tailwindcss-radix-colors/dist/tomato.css"; /* error */
-/* The biggest difference from Tailwind CSS is that the scale is now from 1 to 12, instead of from 50 to 950.
-example for setting a background color:
-* class="bg-red-ui" (component class, @see https://tailwindcss-radix-colors.mrcai.dev/latest/component-classes)
-* or class="bg-red-1" for colors from 1-12 (@see https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale) */
-
-/*
-<!-- Dark mode -->
-<div class="bg-red-1 dark:bg-reddark-1"></div>
-<!-- DCI-P3 color space -->
-<div class="bg-redp3-1 dark:bg-reddarkp3-1"></div>
-<!-- Alpha variant -->
-<div class="bg-reda-1 dark:bg-reddarka-1"></div>
-<!-- Alpha variant in DCI-P3 color space -->
-<div class="bg-redp3a-1 dark:bg-reddarkp3a-1"></div>
-<!-- Component classes -->
-<div class="bg-red-ui border-red-dim text-red-normal"></div>
-*/
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
+/* colors from 1 to 12 */
+/* green - success */
+/* cyan - info */
+/* amber - warning */
+/* tomato - error */
 
 .dark, .dark-theme {
   --teal-1: #343d3c;
