@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Button } from '@radix-ui/themes';
+import { Button, TextArea, TextField } from '@radix-ui/themes';
 
 const BookmarkManager = () => {
     const [folderName, setFolderName] = useState('');
@@ -42,30 +42,30 @@ const BookmarkManager = () => {
     };
 
     return (
-        <div className="p-4 bg-green-1 text-green-12 dark:bg-green-12 dark:text-green-1 rounded-lg shadow-md">
+        <div className="p-4 rounded-lg w-96 max-w-full">
             <h2 className="text-xl font-bold mb-4">Bookmark Manager</h2>
-            <textarea
+            <TextArea
                 className="w-full p-2 border rounded mb-2"
                 rows={5}
                 placeholder="Enter URLs (one per line)"
                 value={bookmarkUrls}
                 onChange={(e) => setBookmarkUrls(e.target.value)}
             />
-            <textarea
+            <TextArea
                 className="w-full p-2 border rounded mb-2"
                 rows={5}
                 placeholder="Enter Names (one per line, optional)"
                 value={bookmarkNames}
                 onChange={(e) => setBookmarkNames(e.target.value)}
             />
-            <input
+            <TextField.Root
                 type="text"
                 className="w-full p-2 border rounded mb-4"
                 placeholder="Folder Name (optional)"
                 value={folderName}
                 onChange={(e) => setFolderName(e.target.value)}
             />
-            <input
+            <TextField.Root
                 type="text"
                 className="w-full p-2 border rounded mb-4"
                 placeholder="Bookmark Title (default: 'Bookmarks')"

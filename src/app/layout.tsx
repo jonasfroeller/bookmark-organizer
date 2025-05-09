@@ -26,7 +26,7 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" enableColorScheme enableSystem>
-          <Theme accentColor="green" grayColor="olive">
+          <Theme accentColor="teal" grayColor="gray">
             <TRPCReactProvider>
               <Header />
               <Main>

@@ -50,7 +50,7 @@ export default function ResetPasswordForm() {
             required
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
-            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            className="block w-full rounded-md border-0 py-3 pl-3 sm:text-sm/6"
           />
         </div>
         <div>
@@ -67,7 +67,7 @@ export default function ResetPasswordForm() {
             required
             onChange={(e) => setCheckPassword(e.target.value)}
             autoComplete="current-password"
-            className="block w-full rounded-md border-0 py-3 pl-3 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 sm:text-sm/6"
+            className="block w-full rounded-md border-0 py-3 pl-3 sm:text-sm/6"
           />
         </div>
         <Button
