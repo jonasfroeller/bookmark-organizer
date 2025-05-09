@@ -3,7 +3,7 @@ import { LatestPost } from "@/app/_components/post";
 import { api, HydrateClient } from "@/trpc/server";
 import UserProfile from "@/components/user-profile";
 import { getSession } from "@/server/auth";
-import { Button } from "@radix-ui/themes";
+import { Button } from "@/components/ui/RadixTheme";
 import BookmarkManager from '@/components/BookmarkManager';
 
 export default async function Home() {

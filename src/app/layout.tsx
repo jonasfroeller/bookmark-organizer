@@ -23,6 +23,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${GeistSans.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <ThemeProvider attribute="class" enableColorScheme enableSystem>
