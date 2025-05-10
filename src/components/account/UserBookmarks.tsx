@@ -1,37 +1,53 @@
 "use client";
 
-import { useState } from 'react';
-import { Box, Button, Flex, Heading, Text, Table } from '@/components/ui/RadixTheme';
-import { TrashIcon } from '@radix-ui/react-icons';
-
-type Bookmark = {
-  id: string;
-  title: string;
-  url: string;
-  createdAt: Date;
-};
+import { Box, Button, Flex, Heading, Text, Table, Spinner } from '@/components/ui/RadixTheme';
+import { TrashIcon, ExternalLinkIcon, StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
+import { api } from '@/trpc/react';
 
 const UserBookmarks = () => {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([
-    {
-      id: '1',
-      title: 'Example Bookmark 1',
-      url: 'https://example.com/1',
-      createdAt: new Date('2023-01-01'),
-    },
-    {
-      id: '2',
-      title: 'Example Bookmark 2',
-      url: 'https://example.com/2',
-      createdAt: new Date('2023-01-02'),
-    },
-  ]);
+  const utils = api.useUtils();
+  
+  const { data: bookmarks, isLoading } = api.bookmark.getAll.useQuery(undefined, {
+    refetchOnWindowFocus: true,
+  });
+  
+  const deleteBookmark = api.bookmark.delete.useMutation({
+    onSuccess: () => {
+      utils.bookmark.getAll.invalidate();
+    }
+  });
+  
+  const toggleFavorite = api.bookmark.update.useMutation({
+    onSuccess: () => {
+      utils.bookmark.getAll.invalidate();
+    }
+  });
 
   const handleDelete = (id: string) => {
-    setBookmarks(bookmarks.filter(bookmark => bookmark.id !== id));
+    if (confirm('Are you sure you want to delete this bookmark?')) {
+      deleteBookmark.mutate({ id });
+    }
+  };
+  
+  const handleToggleFavorite = (id: string, isFavorite: boolean) => {
+    toggleFavorite.mutate({
+      id,
+      isFavorite: !isFavorite
+    });
   };
 
-  if (bookmarks.length === 0) {
+  if (isLoading) {
+    return (
+      <Box>
+        <Heading as="h3" size="4" mb="3">Your Bookmarks</Heading>
+        <Flex align="center" justify="center" p="6">
+          <Spinner size="3" />
+        </Flex>
+      </Box>
+    );
+  }
+
+  if (!bookmarks || bookmarks.length === 0) {
     return (
       <Box>
         <Heading as="h3" size="4" mb="3">Your Bookmarks</Heading>
@@ -55,13 +71,31 @@ const UserBookmarks = () => {
         <Table.Body>
           {bookmarks.map((bookmark) => (
             <Table.Row key={bookmark.id}>
-              <Table.Cell>{bookmark.title}</Table.Cell>
               <Table.Cell>
-                <Text size="2" truncate>
-                  {bookmark.url}
-                </Text>
+                <Flex align="center" gap="2">
+                  <Button 
+                    size="1" 
+                    variant="ghost" 
+                    onClick={() => handleToggleFavorite(bookmark.id, bookmark.isFavorite)}
+                  >
+                    {bookmark.isFavorite ? <StarFilledIcon /> : <StarIcon />}
+                  </Button>
+                  {bookmark.name}
+                </Flex>
               </Table.Cell>
-              <Table.Cell>{bookmark.createdAt.toLocaleDateString()}</Table.Cell>
+              <Table.Cell>
+                <Flex align="center" gap="2">
+                  <Text size="2" truncate style={{ maxWidth: '300px' }}>
+                    {bookmark.url}
+                  </Text>
+                  <a href={bookmark.url} target="_blank" rel="noopener noreferrer">
+                    <Button size="1" variant="ghost">
+                      <ExternalLinkIcon />
+                    </Button>
+                  </a>
+                </Flex>
+              </Table.Cell>
+              <Table.Cell>{new Date(bookmark.createdAt).toLocaleDateString()}</Table.Cell>
               <Table.Cell>
                 <Button 
                   size="1" 

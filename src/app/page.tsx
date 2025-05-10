@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { LatestPost } from "@/app/_components/post";
-import { api, HydrateClient } from "@/trpc/server";
-import UserProfile from "@/components/user-profile";
+import { HydrateClient } from "@/trpc/server";
 import { getSession } from "@/server/auth";
 import { Box, Button, Card, Container, Flex, Grid, Heading, Section, Separator, Text } from "@/components/ui/RadixTheme";
 import BookmarkManager from '@/components/BookmarkManager';
+import BookmarkList from '@/components/BookmarkList';
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getSession();
 
   return (
@@ -74,14 +72,7 @@ export default async function Home() {
         <Container size="3">
           <Section size="3" className="py-12">
             <Flex direction="column" align="center" gap="6">
-              <UserProfile user={session.user} />
-              
-              <Card size="2" className="w-full">
-                <Flex direction="column" align="center" gap="3" p="4">
-                  <Text size="5">{hello ? hello.greeting : "Loading tRPC query..."}</Text>
-                  <LatestPost />
-                </Flex>
-              </Card>
+              <BookmarkList />
             </Flex>
           </Section>
         </Container>
