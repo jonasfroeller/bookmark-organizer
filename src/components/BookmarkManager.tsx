@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Button, TextArea, TextField } from '@radix-ui/themes';
+import { Box, Button, Card, Flex, Heading, TextArea, TextField } from '@/components/ui/RadixTheme';
 
 const BookmarkManager = () => {
     const [folderName, setFolderName] = useState('');
@@ -42,40 +42,61 @@ const BookmarkManager = () => {
     };
 
     return (
-        <div className="p-4 rounded-lg w-96 max-w-full">
-            <h2 className="text-xl font-bold mb-4">Bookmark Manager</h2>
-            <TextArea
-                className="w-full p-2 border rounded mb-2"
-                rows={5}
-                placeholder="Enter URLs (one per line)"
-                value={bookmarkUrls}
-                onChange={(e) => setBookmarkUrls(e.target.value)}
-            />
-            <TextArea
-                className="w-full p-2 border rounded mb-2"
-                rows={5}
-                placeholder="Enter Names (one per line, optional)"
-                value={bookmarkNames}
-                onChange={(e) => setBookmarkNames(e.target.value)}
-            />
-            <TextField.Root
-                type="text"
-                className="w-full p-2 border rounded mb-4"
-                placeholder="Folder Name (optional)"
-                value={folderName}
-                onChange={(e) => setFolderName(e.target.value)}
-            />
-            <TextField.Root
-                type="text"
-                className="w-full p-2 border rounded mb-4"
-                placeholder="Bookmark Title (default: 'Bookmarks')"
-                value={bookmarkTitle}
-                onChange={(e) => setBookmarkTitle(e.target.value)}
-            />
-            <Button onClick={download} disabled={!bookmarkUrls.trim()}>
-                Download Bookmarks
-            </Button>
-        </div>
+        <Card size="2" className="w-full">
+            <Flex direction="column" gap="4" p="4">
+                <Heading as="h3" size="5">Bookmark Manager</Heading>
+                
+                <Box>
+                    <TextArea
+                        placeholder="Enter URLs (one per line)"
+                        value={bookmarkUrls}
+                        onChange={(e) => setBookmarkUrls(e.target.value)}
+                        size="3"
+                        rows={5}
+                    />
+                </Box>
+                
+                <Box>
+                    <TextArea
+                        placeholder="Enter Names (one per line, optional)"
+                        value={bookmarkNames}
+                        onChange={(e) => setBookmarkNames(e.target.value)}
+                        size="3"
+                        rows={5}
+                    />
+                </Box>
+                
+                <Box>
+                    <TextField.Root
+                        size="3"
+                        placeholder="Folder Name (optional)"
+                        value={folderName}
+                        onChange={(e) => setFolderName(e.target.value)}
+                    />
+                </Box>
+                
+                <Box>
+                    <TextField.Root
+                        size="3"
+                        placeholder="Bookmark Title (default: 'Bookmarks')"
+                        value={bookmarkTitle}
+                        onChange={(e) => setBookmarkTitle(e.target.value)}
+                    />
+                </Box>
+                
+                <Flex justify="center">
+                    <Button 
+                        onClick={download} 
+                        disabled={!bookmarkUrls.trim()}
+                        size="3"
+                        variant="solid"
+                        color="amber"
+                    >
+                        Download Bookmarks
+                    </Button>
+                </Flex>
+            </Flex>
+        </Card>
     );
 };
 
