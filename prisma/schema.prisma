@@ -10,16 +10,89 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Bookmark {
+  id          String   @id @default(uuid())
+  url         String
+  name        String
+  isFavorite  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // OG Preview data
+  ogTitle       String?
+  ogDescription String?
+  ogImage       String?
+  favicon       String?
+  
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folderId    String?
+  folder      Folder?  @relation(fields: [folderId], references: [id])
+  bookmarkTags BookmarkTag[]
 
-  createdById String
-  createdBy   User   @relation(fields: [createdById], references: [id])
+  @@map("bookmark")
+}
 
-  @@index([name])
+model Folder {
+  id          String   @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  bookmarks   Bookmark[]
+  profileId   String?
+  profile     Profile?  @relation(fields: [profileId], references: [id])
+  parentId    String?
+  parent      Folder?   @relation("FolderToFolder", fields: [parentId], references: [id])
+  subfolders  Folder[]  @relation("FolderToFolder")
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("folder")
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  folders     Folder[]
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profile")
+}
+
+model Tag {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  bookmarkTags BookmarkTag[]
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([title, userId])
+  @@map("tag")
+}
+
+model BookmarkTag {
+  bookmarkId  String
+  bookmark    Bookmark @relation(fields: [bookmarkId], references: [id], onDelete: Cascade)
+  tagId       String
+  tag         Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@id([bookmarkId, tagId])
+  @@map("bookmark_tag")
 }
 
 model User {
@@ -32,7 +105,11 @@ model User {
   updatedAt     DateTime
   Session       Session[]
   Account       Account[]
-  Post          Post[]
+  
+  bookmarks     Bookmark[]
+  folders       Folder[]
+  profiles      Profile[]
+  tags          Tag[]
 
   @@unique([email])
   @@map("user")
