@@ -1,64 +1,85 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Button, TextField } from "@radix-ui/themes";
+import { Button, TextField, Text, Box, Card, Heading, Flex, Spinner } from "@radix-ui/themes";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ForgetPasswordForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const forgetPassword = async () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const forgetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
     await authClient.forgetPassword({
       email,
       redirectTo: "/reset-password",
       fetchOptions: {
         onSuccess: () => {
-          alert("We have sent you an email for an instructions.");
+          setSubmitted(true);
+          setLoading(false);
         },
         onError: (ctx) => {
           alert(ctx.error.message);
-        },
-        onResponse: () => {
           setLoading(false);
         },
       },
     });
   };
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="mx-auto flex w-full max-w-[500px] flex-col gap-4">
-        <div className="mb-8">
-          <h1 className="font-geist text-3xl font-normal tracking-tighter">
-            Forget Password
-          </h1>
-        </div>
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm/6 font-medium"
-          >
-            Email address
-          </label>
-          <TextField.Root
-            id="email"
-            name="email"
-            type="email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-          />
-        </div>
-        <Button
-          disabled={email.length === 0}
-          onClick={forgetPassword}
-        >
-          {loading ? (
-            <span className="relative">Forgetting password...</span>
+    <Flex justify="center" align="center" style={{ minHeight: "100dvh" }}>
+      <Card size="3" style={{ width: "100%", maxWidth: "450px" }}>
+        <Flex direction="column" gap="5">
+          <Box style={{ textAlign: "center" }}>
+            <Heading size="6" mb="1" className="tracking-tighter">Forgot Password</Heading>
+            <Text size="2" color="gray">Enter your email to receive a reset link</Text>
+          </Box>
+          
+          {submitted ? (
+            <Flex direction="column" gap="4" align="center">
+              <Box style={{ textAlign: "center" }} mt="4">
+                <Text size="3" weight="medium">Email Sent!</Text>
+                <Text size="2" color="gray" mt="2">
+                  Check your inbox for instructions to reset your password.
+                </Text>
+              </Box>
+              <Link href="/login">
+                <Button size="2" variant="soft">Return to Login</Button>
+              </Link>
+            </Flex>
           ) : (
-            <span className="relative">Forget Password</span>
+            <form className="space-y-4" onSubmit={forgetPassword}>
+              <Box className="space-y-2">
+                <Text as="label" size="2" weight="medium">
+                  Email address
+                </Text>
+                <TextField.Root
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                />
+              </Box>
+              
+              <Button type="submit" size="3" className="w-full" disabled={loading || email.length === 0}>
+                {loading ? <Flex align="center" gap="2"><Spinner /> Sending Reset Link...</Flex> : "Reset Password"}
+              </Button>
+              
+              <Flex justify="center" mt="2">
+                <Text size="2">
+                  Remember your password?{" "}
+                  <Link href="/login">
+                    <Text size="2" color="blue">Sign In</Text>
+                  </Link>
+                </Text>
+              </Flex>
+            </form>
           )}
-        </Button>
-      </div>
-    </div>
+        </Flex>
+      </Card>
+    </Flex>
   );
 }
