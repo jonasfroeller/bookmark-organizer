@@ -1,7 +1,7 @@
 "use client";
 
 import * as RadixUI from "@radix-ui/themes";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 export const AccessibleIcon = (props: ComponentProps<typeof RadixUI.AccessibleIcon>) => <RadixUI.AccessibleIcon {...props} />;
 export const AspectRatio = (props: ComponentProps<typeof RadixUI.AspectRatio>) => <RadixUI.AspectRatio {...props} />;

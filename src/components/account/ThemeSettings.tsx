@@ -4,16 +4,14 @@ import { useTheme } from 'next-themes';
 import { Box, Flex, Heading, Text } from '@/components/ui/RadixTheme';
 import { Select } from "@radix-ui/themes";
 import { SunIcon, MoonIcon, DesktopIcon } from '@radix-ui/react-icons';
-import { useMemo, ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 
 type ThemeOption = 'light' | 'dark' | 'system';
 
-type ThemeData = {
-  [key in ThemeOption]: {
+type ThemeData = Record<ThemeOption, {
     label: string;
     icon: ReactNode;
-  }
-};
+  }>;
 
 const ThemeSettings = () => {
   const { theme, setTheme } = useTheme();

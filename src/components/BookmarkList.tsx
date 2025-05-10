@@ -21,19 +21,19 @@ export const BookmarkList = () => {
       setNewBookmarkUrl('');
       setNewBookmarkName('');
       setIsAddDialogOpen(false);
-      utils.bookmark.getAll.invalidate();
+      void utils.bookmark.getAll.invalidate();
     }
   });
   
   const deleteBookmark = api.bookmark.delete.useMutation({
     onSuccess: () => {
-      utils.bookmark.getAll.invalidate();
+      void utils.bookmark.getAll.invalidate();
     }
   });
   
   const toggleFavorite = api.bookmark.update.useMutation({
     onSuccess: () => {
-      utils.bookmark.getAll.invalidate();
+      void utils.bookmark.getAll.invalidate();
     }
   });
 

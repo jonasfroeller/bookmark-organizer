@@ -27,7 +27,7 @@ export function Header() {
 
   const handleNavChange = (value: string) => {
     if (value === "logout") {
-      authClient.signOut({
+      void authClient.signOut({
         fetchOptions: {
           onSuccess: () => {
             router.push("/");

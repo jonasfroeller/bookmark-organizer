@@ -13,18 +13,18 @@ const UserBookmarks = () => {
   
   const deleteBookmark = api.bookmark.delete.useMutation({
     onSuccess: () => {
-      utils.bookmark.getAll.invalidate();
+      void utils.bookmark.getAll.invalidate();
     }
   });
   
   const toggleFavorite = api.bookmark.update.useMutation({
     onSuccess: () => {
-      utils.bookmark.getAll.invalidate();
+      void utils.bookmark.getAll.invalidate();
     }
   });
 
   const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this bookmark?')) {
+    if (confirm("Are you sure you want to delete this bookmark?")) {
       deleteBookmark.mutate({ id });
     }
   };
@@ -51,7 +51,7 @@ const UserBookmarks = () => {
     return (
       <Box>
         <Heading as="h3" size="4" mb="3">Your Bookmarks</Heading>
-        <Text size="2" color="gray">You haven't created any bookmarks yet.</Text>
+        <Text size="2" color="gray">You haven&apos;t created any bookmarks yet.</Text>
       </Box>
     );
   }

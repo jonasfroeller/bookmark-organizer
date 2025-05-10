@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ReactNode, ChangeEvent } from 'react';
+import React, { useState, type ReactNode, type ChangeEvent } from 'react';
 import { Box, Card, Flex, Heading, IconButton } from '@/components/ui/RadixTheme';
 import { TextField } from "@radix-ui/themes";
 import { GearIcon, PersonIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
@@ -8,11 +8,11 @@ import { usePathname, useRouter } from 'next/navigation';
 
 type AccountSettingsProps = {
   children: ReactNode;
-  title?: string;
+  _title?: string;
 };
 
-const AccountSettings = ({ children, title = "Account" }: AccountSettingsProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const AccountSettings = ({ children, _title = "Account" }: AccountSettingsProps) => {
+  const [, setSearchQuery] = useState('');
   const router = useRouter();
   const pathname = usePathname();
   
